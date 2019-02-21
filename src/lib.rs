@@ -446,7 +446,6 @@ pub fn machine(input: proc_macro::TokenStream) -> syn::export::TokenStream {
     let file_name = format!("target/{}.rs", name.to_string().to_lowercase());
     File::create(&file_name)
         .and_then(|mut file| {
-            file.seek(std::io::SeekFrom::End(0))?;
             file.write_all(gen.to_string().as_bytes())?;
             file.flush()
         })
